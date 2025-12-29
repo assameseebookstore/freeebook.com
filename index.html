@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assamese eBook Store - New Year Special</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2E7D32;
+            --primary-dark: #1B5E20;
+            --accent: #FFD700;
+            --light: #F8F9FA;
+            --dark: #1A1A1A;
+            --text: #333333;
+            --new-year-red: #D32F2F;
+            --new-year-gold: #FFC107;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+        
+        .logo-text h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .new-year-offer {
+            background: linear-gradient(45deg, var(--new-year-red), var(--new-year-gold));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .new-year-offer:before {
+            content: "🎉";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .new-year-offer:after {
+            content: "🎉";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* Main Content */
+        .main-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            position: relative;
+        }
+        
+        .main-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .main-title h2:after {
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            bottom: -10px;
+            left: 10%;
+        }
+        
+        .main-title p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 20px auto;
+            color: #555;
+        }
+        
+        /* eBook Grid */
+        .ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .ebook-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .ebook-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .ebook-cover {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ebook-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .ebook-card:hover .ebook-cover img {
+            transform: scale(1.05);
+        }
+        
+        .ebook-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--new-year-red);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ebook-info {
+            padding: 25px;
+        }
+        
+        .ebook-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .ebook-author {
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .ebook-description {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+        }
+        
+        .btn-download {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .btn-download:hover {
+            background: linear-gradient(to right, var(--primary-dark), #134216);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .btn-demo {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-demo:hover {
+            background: #e6b800;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .assamese-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .ebooks-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .main-title h2 {
+                font-size: 2rem;
+            }
+            
+            .ebooks-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                    margin-right: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .new-year-offer {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+        
+        /* Animation for New Year */
+        @keyframes confetti {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(1000px) rotate(720deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--new-year-red);
+            top: -10px;
+            opacity: 0;
+            z-index: 9999;
+        }
+        
+        .new-year-theme {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .new-year-theme:before {
+            content: "২০২৫";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgba(255, 193, 7, 0.2);
+            transform: rotate(15deg);
+        }
+        
+        /* Special full-width button for single download */
+        .btn-full {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="new-year-theme"></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <div class="logo-text">
+                        <h1>অসমীয়া ই-বুক ষ্টোৰ</h1>
+                        <p>Assamese eBook Store</p>
+                    </div>
+                </div>
+                <div class="new-year-offer">
+                    নৱবৰ্ষৰ বিশেষ উপহাৰ!<br>New Year Special Offer!
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-title">
+            <h2>নৱবৰ্ষীয় বিশেষ সংগ্ৰহ</h2>
+            <p>নতুন বছৰত বিশেষভাৱে আপোনাৰ বাবে নিৰ্বাচিত অসমীয়া ই-বুকসমূহ। Best for Assam police, Si, SSC, ADRE and all other assam goverment cometitive exam</p>
+            <p class="assamese-text">শুভ নৱবৰ্ষ ২০২6!</p>
+        </div>
+        
+        <!-- eBooks Grid -->
+        <div class="ebooks-grid">
+            <!-- eBook 1 - Folder Link -->
+            <div class="ebook-card">
+                <div class="ebook-badge">সংগ্ৰহ</div>
+                <div class="ebook-cover">
+                    <img src="https://i.postimg.cc/5NqX8gSJ/IMG-202512281317124036.jpg" alt="Assamese eBook Cover 1">
+                </div>
+                <div class="ebook-info">
+                    <h3 class="ebook-title">General Knowledge and General Awarness</h3>
+                    <p class="ebook-author">prepared by assamese ebook store </p>
+                    <p class="ebook-description">এই ই-বুক খন  সম্পুৰ্ণ অসমীয়া ভাষাত, সকলো ধৰণৰ goverment cometitive exam ৰ উপযোগী  হোৱাকৈ বনোৱা হৈছে।
+                    <div class="button-group">
+                        <a href="https://chandan-pngkk.github.io/facebook-index.com/" 
+                           target="_blank" 
+                           class="btn btn-download btn-full">
+                            <i class="fas fa-folder-open"></i>Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- eBook 2 - Direct File Link -->
+            <div class="ebook-card">
+                <div class="ebook-badge">পিডিএফ ফাইল</div>
+                <div class="ebook-cover">
+                    <img src="https://i.postimg.cc/02xQ5mR3/20251228-131928.jpg" alt="Assamese eBook Cover 2">
+                </div>
+                <div class="ebook-info">
+                    <h3 class="ebook-title">সম্পুৰ্ণ অসমীয়া ভাষাত, সম্পুৰ্ণ গনিত </h3>
+                    <p class="ebook-author">create by assamese ebook store </p>
+                    <p class="ebook-description">explaination all of completes math chapter in assamese + chapterwise MCQ with silution</p>
+                    <div class="button-group">
+                        <a href="https://chandan-pngkk.github.io/whatsapp-index.com/" 
+                           class="btn btn-download btn-full"
+                           download="Assamese_Grammar.pdf">
+                            <i class="fas fa-download"></i> DOWNLOAD
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- eBook 3 - Folder Link with Demo -->
+            <div class="ebook-card">
+                <div class="ebook-badge">ডেমো উপলব্ধ</div>
+                <div class="ebook-cover">
+                    <img src="https://i.postimg.cc/x1yGf2hG/IMG-20251224-184816.png" alt="Assamese eBook Cover 3">
+                </div>
+                <div class="ebook-info">
+                    <h3 class="ebook-title">LUCENT GK Assamese translation & Upgrade version 2025-26 edition</h3>
+                    <p class="ebook-author">LUCENT GK 2025-26 ৰ সম্পুৰ্ণ অসমীয়া অনুবাদ & সংস্কৰণ</p>
+                    <p class="ebook-description"> (medium- assamese, total page 794, 2025-26 edition, 100% human writing with typing)
+                        আৰু ই-বুক খনৰ বিষয়ে কিবা জানিব লগীয়া থাকিলে আমাৰ whatsapp number 6901363451  ত massage কৰক । 
+                    </p>
+                    <div class="button-group">
+                        <a href="https://rzp.io/rzp/BBP1JIk" 
+                           target="_blank" 
+                           class="btn btn-download">
+                            <i class="fas fa-folder-open"></i> BUY NOW
+                        </a>
+                        <a href="https://drive.google.com/file/d/1EjP018RxmgMqNwBusIRx0RR0C18l_it9/view?usp=drivesdk" 
+                           target="_blank" 
+                           class="btn btn-demo">
+                            <i class="fas fa-eye"></i> DEMO LINK
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Important Notes Section -->
+        <div style="background: white; border-radius: 15px; padding: 25px; margin-top: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--primary-dark); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-info-circle"></i> ডাউনল'ড সূচনা
+            </h3>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="padding: 8px 0; border-bottom: 1px dashed #eee; display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fas fa-folder" style="color: var(--primary); margin-top: 4px;"></i>
+                    <span><strong>FREE eBook:</strong> free ebook সমুহ download কৰিবলৈ task সমুহ comlete কৰক , </span>
+                </li>
+                <li style="padding: 8px 0; border-bottom: 1px dashed #eee; display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fas fa-file-pdf" style="color: #D32F2F; margin-top: 4px;"></i>
+                    <span><strong>download link :</strong> task সমুহ complete হ'লেই download link সমুহ share button ৰ তলত দেখা পাব, তাৰ পৰা download কৰিব পাৰিব।
+                </li>
+                <li style="padding: 8px 0; display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fas fa-eye" style="color: var(--accent); margin-top: 4px;"></i>
+                    <span><strong>ডেম'(DEMO):</strong>lucent gk খনৰ হে demo  দিয়া আছে, demo টো sceenshot হে দিয়া অছে ,orginal pdf টোত 100% clear and copyable আখৰত লাভ কৰিবা </span>
+                </li>
+            </ul>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="assamese-text">শুভ নৱবৰ্ষ ২০২৬</div>
+                <p>অসমীয়া ই-বুক ষ্টোৰলৈ আপোনাক স্বাগতম। এখ্ন ভাল কিতাপেৰে আৰম্ভ কৰক আপোনাৰ নতুন বছৰ !<!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                </head>
+                <body>
+                    
+                </body>
+                </html> </p>
+                <p class="copyright">© ২০২৫-২৬ অসমীয়া ই-বুক ষ্টোৰ। সকলো অধিকাৰ সংৰক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Create confetti effect for New Year celebration
+        function createConfetti() {
+            const colors = ['#D32F2F', '#FFC107', '#2E7D32', '#2196F3', '#9C27B0'];
+            const container = document.body;
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const animationDelay = Math.random() * 5;
+                const animationDuration = Math.random() * 3 + 3;
+                
+                // Apply styles
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.backgroundColor = color;
+                confetti.style.left = `${left}vw`;
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.animation = `confetti ${animationDuration}s ease-out ${animationDelay}s forwards`;
+                
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, (animationDelay + animationDuration) * 1000);
+            }
+        }
+        
+        // Trigger confetti on page load
+        window.addEventListener('load', () => {
+            setTimeout(createConfetti, 500);
+            
+            // Also trigger confetti when clicking New Year offer
+            document.querySelector('.new-year-offer').addEventListener('click', () => {
+                createConfetti();
+            });
+        });
+        
+        // File download tracking
+        document.querySelectorAll('.btn-download').forEach(button => {
+            button.addEventListener('click', function() {
+                const bookTitle = this.closest('.ebook-card').querySelector('.ebook-title').textContent;
+                console.log(`Download initiated for: ${bookTitle}`);
+                
+                // Optional: Add analytics here
+                // Example: Send download event to Google Analytics
+                // gtag('event', 'download', { 'book_title': bookTitle });
+            });
+        });
+    </script>
+</body>
+</html>
